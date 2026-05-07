@@ -27,7 +27,27 @@
           Enter a Username to preview public Github repositories. This fetch
           user data from Github orginial API.
         </p>
-        
+
+        <div class="search-pannel">
+          <form id="searchForm">
+            <input
+              type="text"
+              name="Username"
+              placeholder="Enter Github Username"
+              autocomplete="off"
+            />
+            <button id="searchButton" type="button">Search</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="profile-section">
+        <div id="repoContainer" class="profile-card-placeholder">
+          <div class="repo-empty">
+            <h2 class="placeholder">Github profile preview</h2>
+            <p>Search a user to view profile repository info.</p>
+          </div>
+        </div>
       </section>
     </main>
   </body>
