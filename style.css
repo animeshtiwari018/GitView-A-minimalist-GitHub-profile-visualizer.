@@ -24,6 +24,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top, rgba(56, 139, 253, 0.18), transparent 30%),
     linear-gradient(180deg, #161b22 0%, #0d1117 100%);
@@ -34,6 +35,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   padding: 18px 32px;
   background: rgba(13, 17, 23, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -63,15 +66,49 @@ header {
   font-weight: 700;
 }
 
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 nav a {
   list-style: none;
 }
 
 main {
+  width: 100%;
+  max-width: 100vw;
   padding: 72px 24px 24px 48px;
   display: grid;
   place-items: center;
   text-align: center;
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 16px 20px;
+  }
+
+  main {
+    padding: 56px 18px 24px;
+  }
+
+  .hero {
+    padding: 0 6px;
+  }
+
+  .search-pannel form {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .search-pannel button {
+    width: 100%;
+    padding: 16px 0;
+  }
 }
 
 .hero {
