@@ -67,6 +67,30 @@ nav a {
   list-style: none;
 }
 
-{
-    
+main {
+  padding: 72px 24px 24px 48px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.hero {
+  max-width: 768px;
+  width: 100%;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+  color: white;
+}
+
+.hero p {
+  margin: 22px auto 42px;
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
