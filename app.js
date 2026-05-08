@@ -47,9 +47,58 @@ async function searchGithub() {
   }
 }
 
-function renderProfile(user){
+function renderProfile(user) {
   profileContainer.innerHTML = `
-  <div class="profile-card profile`
+  <div class="profile-card profile-card--centered">
+  <img src= "${user.avatar_url}" alt= "${user.login} avatar" class="profile-avatar"/>
+  <div class="profile-card__content">
+        <span class="profile-chip">@${user.login}</span>
+        <h3>${user.name || user.login}</h3>
+        <p class="profile-bio">${user.bio || "No bio available."}</p>
+
+        <div class="profile-card__meta">
+          ${user.location ? `<span>${user.location}</span>` : ""}
+          ${user.blog ? `<a href="${user.blog.startsWith("http") ? user.blog : `https://${user.blog}`}" target="_blank">Website</a>` : ""}
+        </div>
+
+        <div class="profile-card__stats">
+          <div class="profile-stat"><strong>${user.public_repos}</strong><span>Repos</span></div>
+          <div class="profile-stat"><strong>${user.followers}</strong><span>Followers</span></div>
+          <div class="profile-stat"><strong>${user.following}</strong><span>Following</span></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderRepos(repos) {
+  if (repos.length === 0) {
+    repoContainer.innerHTML = `<div class="repo-empty">This user has no public repositories.</div>`;
+    return;
+  }
+  const repoCards = repos
+    .map((repo) => {
+      return `
+        <div class="repo-card">
+          <div class="repo-card__header">
+            <div>
+              <h3>${repo.name}</h3>
+              <p>${repo.description || "No description available."}</p>
+            </div>
+            <div class="repo-card__meta">
+              <span>${repo.private ? "Private" : "Public"}</span>
+              <span>${repo.language || "Unknown"}</span>
+            </div>
+          </div>
+          <div class="repo-card__footer">
+            <span>Last updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+            <a href="${repo.html_url}" target="_blank">View repository</a>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  repoContainer.innerHTML = repoCards;
 }
 // // STEP 3 → Check response
 // console.log("User Response Object:");
