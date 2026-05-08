@@ -20,7 +20,7 @@ async function searchGithub() {
     ]);
 
     if (!userResponse.ok) {
-      if (!userResponse.status === 404) {
+      if (userResponse.status === 404) {
         throw new Error(
           "User not found! Please check the username and try again",
         );
@@ -40,10 +40,11 @@ async function searchGithub() {
     const repos = await reposResponse.json();
 
     renderProfile(profile);
-    rederRepos(repos);
+    renderRepos(repos);
   } catch (error) {
-    profileContainer.innerHTML = `div class="repo-error>${error.messsage}</div>`;
-    repoContainer.innerHTML = `<div class= "repo-error">${error.messsage}</div>`;
+    const message = error?.message || "Something went wrong.";
+    profileContainer.innerHTML = `<div class="repo-error">${message}</div>`;
+    repoContainer.innerHTML = `<div class="repo-error">${message}</div>`;
   }
 }
 
@@ -70,19 +71,44 @@ function renderProfile(user) {
     </div>`;
 }
 
+function getRepoDescription(repo) {
+  const description = repo.description || "No description available.";
+  const maxLength = 110;
+  if (description.length <= maxLength) {
+    return {
+      short: description,
+      full: description,
+      truncated: false,
+    };
+  }
+
+  return {
+    short: `${description.slice(0, maxLength).trim()}…`,
+    full: description,
+    truncated: true,
+  };
+}
+
 function renderRepos(repos) {
   if (repos.length === 0) {
     repoContainer.innerHTML = `<div class="repo-empty">This user has no public repositories.</div>`;
     return;
   }
+
   const repoCards = repos
     .map((repo) => {
+      const description = getRepoDescription(repo);
+
       return `
         <div class="repo-card">
           <div class="repo-card__header">
             <div>
               <h3>${repo.name}</h3>
-              <p>${repo.description || "No description available."}</p>
+              <p class="repo-description">
+                <span class="repo-description__short">${description.short}</span>
+                <span class="repo-description__full">${description.full}</span>
+              </p>
+              ${description.truncated ? '<button class="see-more-btn" type="button">See more</button>' : ""}
             </div>
             <div class="repo-card__meta">
               <span>${repo.private ? "Private" : "Public"}</span>
@@ -99,6 +125,19 @@ function renderRepos(repos) {
     .join("");
 
   repoContainer.innerHTML = repoCards;
+}
+
+if (repoContainer) {
+  repoContainer.addEventListener("click", (event) => {
+    const button = event.target.closest(".see-more-btn");
+    if (!button) return;
+
+    const card = button.closest(".repo-card");
+    if (!card) return;
+
+    const expanded = card.classList.toggle("expanded");
+    button.textContent = expanded ? "Show less" : "See more";
+  });
 }
 // // STEP 3 → Check response
 // console.log("User Response Object:");
