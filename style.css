@@ -202,3 +202,14 @@ main {
   transform: translateY(-1px);
   box-shadow: 0 16px 36px rgba(41, 94, 51, 0.28);
 }
+
+.card {
+  width: min(100%, 640px);
+  margin-top: 32px;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background: rgba(18, 22, 29, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 80px rgba(6, 12, 20, 0.35);
+  text-align: left;
+}
