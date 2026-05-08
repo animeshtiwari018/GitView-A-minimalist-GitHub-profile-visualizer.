@@ -224,7 +224,8 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
   align-items: stretch;
-  width: 100%;
+  width: min(100%, 1200px);
+  margin: 0 auto;
 }
 .repo-card {
   display: flex;
@@ -445,14 +446,6 @@ nav a:last-child {
   display: block;
   font-size: 1.1rem;
   color: white;
-}
-
-#repoContainer {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  width: min(100%, 1200px);
-  margin: 0 auto;
 }
 
 .repo-loading,

@@ -1,0 +1,109 @@
+/* Responsive overrides for mobile and tablet */
+
+@media (max-width: 900px) {
+  main {
+    padding: 42px 18px 18px;
+  }
+
+  .search-pannel {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  .search-pannel form {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .search-pannel input,
+  .search-pannel button {
+    width: 100%;
+  }
+
+  .search-pannel input {
+    min-width: 0;
+  }
+
+  .search-pannel button {
+    min-height: 50px;
+    padding: 14px 18px;
+  }
+
+  .repo-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .repo-card {
+    min-height: 220px;
+    padding: 18px;
+    width: 100%;
+  }
+
+  .repo-card__header {
+    gap: 12px;
+  }
+
+  .repo-card__meta {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: 36px 14px 16px;
+  }
+
+  .hero {
+    padding: 0 8px;
+  }
+
+  .hero p {
+    margin: 18px auto 26px;
+    max-width: 100%;
+  }
+
+  .search-pannel form {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .search-pannel button {
+    min-height: 52px;
+  }
+
+  .repo-card {
+    min-height: 200px;
+    padding: 16px;
+  }
+
+  .repo-card__header h3 {
+    font-size: 1.05rem;
+  }
+
+  .repo-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 28px 12px 14px;
+  }
+
+  .search-pannel form {
+    padding: 12px;
+  }
+
+  .repo-card {
+    min-height: 180px;
+    padding: 14px;
+  }
+}
